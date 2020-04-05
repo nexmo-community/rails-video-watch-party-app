@@ -5,6 +5,7 @@
 
 import '../stylesheets/application'
 import './bootstrap_custom.js'
+import './opentok_video.js'
 
 require("@rails/ujs").start()
 require("turbolinks").start()

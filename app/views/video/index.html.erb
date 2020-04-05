@@ -1,3 +1,9 @@
+<script type="text/javascript">
+  var apiKey = '<%= ENV['OPENTOK_API_KEY'] %>';
+  var sessionId = '<%= @session_id %>';
+  var token = '<%= @token %>';
+</script>
+
 <div class="container-fluid">
   
   <!-- HEADER -->
@@ -15,11 +21,15 @@
   </nav>
 
   <!-- BODY -->
-  <div class="row">
-    <div class="col">
-      VIDEO GOES HERE
-    </div>
-  </div>
+
+  <div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-12 align-self-center">
+      <div id="publisher"></div>
+      <div id="subscribers"></div> 
+  </div>  
+</div>
+
 
   
   <!-- FOOTER -->
