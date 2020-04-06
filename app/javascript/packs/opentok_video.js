@@ -45,3 +45,30 @@ session.connect(process.env.OPENTOK_TOKEN, function(error) {
     console.error('Failed to connect', error);
   }
 });
+
+// Listen for new chat submissions
+var form = document.querySelector('form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  session.signal({
+      type: 'msg',
+      data: msgTxt.value
+    }, function(error) {
+    if (error) {
+      console.log('Error sending signal:', error.name, error.message);
+    } else {
+      msgTxt.value = '';
+    }
+  });
+});
+
+// Append new messages to chat
+var msgHistory = document.querySelector('#history');
+session.on('signal:msg', function signalCallback(event) {
+  var msg = document.createElement('p');
+  msg.textContent = event.data;
+  msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
+  msgHistory.appendChild(msg);
+  msg.scrollIntoView();
+});

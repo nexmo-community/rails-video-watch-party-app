@@ -12,4 +12,7 @@ class VideoController < ApplicationController
     ENV['OPENTOK_SESSION_ID'] = session.session_id
     ENV['OPENTOK_TOKEN'] = @opentok.generate_token(ENV['OPENTOK_SESSION_ID'])
   end
+
+  def chat
+  end
 end

@@ -1,9 +1,3 @@
-<script type="text/javascript">
-  var apiKey = '<%= ENV['OPENTOK_API_KEY'] %>';
-  var sessionId = '<%= @session_id %>';
-  var token = '<%= @token %>';
-</script>
-
 <div class="container-fluid">
   
   <!-- HEADER -->
@@ -24,9 +18,17 @@
 
   <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-12 align-self-center">
+    <div class="col-8 align-self-center">
       <div id="publisher"></div>
       <div id="subscribers"></div> 
+    </div>
+    <div class="col-4 align-right">
+      <p id="history"></p>
+      <%= form_with(url: "/chat/send", method: "post") do %>
+        <%= text_field_tag :message, nil, placeholder: 'Your message goes here' %>
+        <%= submit_tag("Submit") %>
+      <% end %>
+    </div>
   </div>  
 </div>
 
