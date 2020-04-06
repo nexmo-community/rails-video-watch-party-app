@@ -15,4 +15,7 @@ class VideoController < ApplicationController
 
   def chat
   end
+
+  def event
+  end
 end

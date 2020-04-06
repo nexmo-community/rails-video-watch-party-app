@@ -1,0 +1,26 @@
+#history {
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow: auto;
+}
+#history .mine {
+    color: #00FF00;
+    text-align: right;
+    margin-right: 10px;
+}
+#history .theirs {
+    color: #00FFFF;
+    margin-left: 10px;
+}
+
+#videos {
+  position: relative;
+  width: 70%;
+  height: 100%;
+  float: left;
+}
+
+#publisher {
+  border: 3px solid white;
+  border-radius: 3px;
+}

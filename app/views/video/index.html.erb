@@ -1,3 +1,9 @@
+<script type="text/javascript">
+  var name = window.prompt("מה שמך?", "שים כאן את שמך הפרטי");
+
+  document.cookie = "name=" + name;
+</script>
+
 <div class="container-fluid">
   
   <!-- HEADER -->
@@ -10,6 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav">
         <a href="#" class="nav-item nav-link active">בית</a>
+        <a href="#" id="watch-mode" class="nav-item nav-link">WATCH MODE ON/OFF</a>
       </div>
     </div>
   </nav>
@@ -18,26 +25,18 @@
 
   <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-8 align-self-center">
+    <div class="videos col-8 align-self-center">
       <div id="publisher"></div>
       <div id="subscribers"></div> 
     </div>
     <div class="col-4 align-right">
       <p id="history"></p>
       <%= form_with(url: "/chat/send", method: "post") do %>
-        <%= text_field_tag :message, nil, placeholder: 'Your message goes here' %>
-        <%= submit_tag("Submit") %>
+        <%= text_field_tag :message, nil, placeholder: 'ההודעה שלך עוברת לכאן' %>
+        <%= submit_tag("שלח") %>
       <% end %>
     </div>
   </div>  
 </div>
 
 
-  
-  <!-- FOOTER -->
-  <footer id="sticky-footer" class="fixed-bottom py-4 bg-dark text-white-50">
-    <div class="container text-center">
-      <small>Copyright &copy;2020 <a href="https://bengreenberg.dev">Ben Greenberg</a></small>
-    </div>
-  </footer>
-</div>
