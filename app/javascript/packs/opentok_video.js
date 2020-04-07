@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     watchLink.style.display = "none";
   };
+
   // Initialize an OpenTok Session object
   var session = OT.initSession(process.env.OPENTOK_API_KEY, process.env.OPENTOK_SESSION_ID);
 
   // Initialize a Publisher, and place it into the element with id="publisher"
-  var publisher = OT.initPublisher('publisher', {
+  var video_publisher = OT.initPublisher('publisher', {
       insertMode: 'append',
   }, function(error) {
     if (error) {
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     sessionConnected: function(event) {
       // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
       // clients)
-      session.publish(publisher, function(error) {
+      session.publish(video_publisher, function(error) {
         if (error) {
           console.error('Failed to publish', error);
         }
@@ -71,11 +72,12 @@ document.addEventListener('DOMContentLoaded', function() {
       var publishOptions = {};
       publishOptions.maxResolution = { width: 1920, height: 1080 };
       publishOptions.videoSource = 'screen';
-      publisher = OT.initPublisher('screen-preview', publishOptions,
+      publisher = OT.initPublisher('publisher', publishOptions,
       function(error) {
         if (error) {
           console.log(error);
         } else {
+          session.unpublish(video_publisher)
           session.publish(publisher, function(error) {
             if (error) {
               console.log(error);
@@ -91,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Turn screen share off
       session.unpublish(publisher);
+      session.publish(video_publisher)
     }
   })
 
