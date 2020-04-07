@@ -1,3 +1,5 @@
+const OpenTok = require('opentok');
+const opentok = new OpenTok(process.env.OPENTOK_API_KEY, process.env.OPENTOK_SESSION_ID);
 document.addEventListener('DOMContentLoaded', function() {
   // Hide or show watch party link based on participant
   var participant = getCookie("name");
@@ -93,7 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Turn screen share off
       session.unpublish(screen_publisher);
-      // session.publish(video_publisher)
+      session.publish(video_publisher, function(error) {
+        if (error) {
+          console.error('Failed to publish', error);
+        }
+      });
     }
   })
 
@@ -127,8 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Get all active video streams and unpublish them
   function videoStopStreaming(session) {
-    console.log(session);
-    session.listStreams(session.id, function(error, streams) {
+    opentok.listStreams(session.id, function(error, streams) {
       if (error) {
         console.log(error.message);
       } else {
