@@ -72,13 +72,13 @@ document.addEventListener('DOMContentLoaded', function() {
       var publishOptions = {};
       publishOptions.maxResolution = { width: 1920, height: 1080 };
       publishOptions.videoSource = 'screen';
-      publisher = OT.initPublisher('publisher', publishOptions,
+      screen_publisher = OT.initPublisher('publisher', publishOptions,
       function(error) {
         if (error) {
           console.log(error);
         } else {
-          session.unpublish(video_publisher)
-          session.publish(publisher, function(error) {
+          videoStopStreaming(video_publisher);
+          session.publish(screen_publisher, function(error) {
             if (error) {
               console.log(error);
             }
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style = 'background-color:white'
 
       // Turn screen share off
-      session.unpublish(publisher);
-      session.publish(video_publisher)
+      session.unpublish(screen_publisher);
+      // session.publish(video_publisher)
     }
   })
 
@@ -124,6 +124,21 @@ document.addEventListener('DOMContentLoaded', function() {
     msgHistory.appendChild(msg);
     msg.scrollIntoView();
   })
+
+  // Get all active video streams and unpublish them
+  function videoStopStreaming(session) {
+    console.log(session);
+    session.listStreams(session.id, function(error, streams) {
+      if (error) {
+        console.log(error.message);
+      } else {
+        streams.map(function(stream) {
+          console.log(stream.id); // '2a84cd30-3a33-917f-9150-49e454e01572'
+          session.forceUnpublish(stream);
+        });
+      };
+    });
+  };
 });
 
 // Get participant name from cookie
