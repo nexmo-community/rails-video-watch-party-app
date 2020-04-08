@@ -1,5 +1,6 @@
 const OpenTok = require('opentok');
-const opentok = new OpenTok(process.env.OPENTOK_API_KEY, process.env.OPENTOK_SESSION_ID);
+var opentok = new OpenTok(api_key, api_secret);
+
 document.addEventListener('DOMContentLoaded', function() {
   // Hide or show watch party link based on participant
   var participant = getCookie("name");
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   // Initialize an OpenTok Session object
-  var session = OT.initSession(process.env.OPENTOK_API_KEY, process.env.OPENTOK_SESSION_ID);
+  var session = OT.initSession(api_key, session_id);
 
   // Initialize a Publisher, and place it into the element with id="publisher"
   var video_publisher = OT.initPublisher('publisher', {
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Connect to the Session using a 'token'
-  session.connect(process.env.OPENTOK_TOKEN, function(error) {
+  session.connect(token, function(error) {
     if (error) {
       console.error('Failed to connect', error);
     }
@@ -60,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Party mode if party mode clicked on
   // Set click status
   var clickStatus = 'off';
-  var publisher = '';
+  var screen_publisher = '';
   watchLink.addEventListener('click', function(event) {
     event.preventDefault();
 
@@ -79,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (error) {
           console.log(error);
         } else {
-          videoStopStreaming(video_publisher);
+          cameraStopStreaming(video_publisher);
           session.publish(screen_publisher, function(error) {
             if (error) {
               console.log(error);
@@ -94,12 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style = 'background-color:white'
 
       // Turn screen share off
-      session.unpublish(screen_publisher);
-      session.publish(video_publisher, function(error) {
-        if (error) {
-          console.error('Failed to publish', error);
-        }
-      });
+      // TODO: Build redirect back to republishing video cameras
     }
   })
 
@@ -132,8 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
   })
 
   // Get all active video streams and unpublish them
-  function videoStopStreaming(session) {
-    opentok.listStreams(session.id, function(error, streams) {
+  function cameraStopStreaming(session) {
+    opentok.listStreams(session_id, function(error, streams) {
       if (error) {
         console.log(error.message);
       } else {
