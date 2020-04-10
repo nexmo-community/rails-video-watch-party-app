@@ -24,6 +24,7 @@ class VideoController < ApplicationController
     @session_id = Session.create_or_load_session_id(session.session_id)
     if @name == 'Yehuda'
       token = session.generate_token({
+        :session_id  => @session_id,
         :role        => :moderator,
         :expire_time => Time.now.to_i+(7 * 24 * 60 * 60), # in one week
         :initial_layout_class_list => ['focus', 'inactive']
