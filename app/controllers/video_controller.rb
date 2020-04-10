@@ -1,5 +1,5 @@
 require 'opentok'
-require 'byebug'
+
 class VideoController < ApplicationController
 
   def index
