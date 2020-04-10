@@ -1,7 +1,20 @@
-<script type="text/javascript">
-  var name = window.prompt("מה שמך?", "שים כאן את שמך הפרטי");
+<script type ="text/javascript">
+  var api_key = '<%= @api_key %>';
+  var api_secret = '<%= @api_secret %>';
+  var session_id = '<%= @session_id %>';
+  var token = '<%= @token %>';
+  var name = '<%= @name %>';
 
-  document.cookie = "name=" + name;
+  // reload page to render with variables
+  (function() {
+    if(window.localStorage) {
+      if(!localStorage.getItem('firstLoad')) {
+        localStorage['firstLoad'] = true;
+        window.location.reload();
+    } else
+      localStorage.removeItem('firstLoad');
+    }
+  })();
 </script>
 
 <div class="container-fluid">
