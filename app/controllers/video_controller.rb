@@ -16,13 +16,21 @@ class VideoController < ApplicationController
   end
 
   def index
+    @name = params[:name]
     @opentok = OpenTok::OpenTok.new ENV['OPENTOK_API_KEY'], ENV['OPENTOK_API_SECRET']
     @api_key = ENV['OPENTOK_API_KEY']
     @api_secret = ENV['OPENTOK_API_SECRET']
     session = @opentok.create_session
     @session_id = Session.create_or_load_session_id(session.session_id)
-    @token = @opentok.generate_token(@session_id)
-    @name = params[:name]
+    if @name == 'Yehuda'
+      token = session.generate_token({
+        :role        => :moderator,
+        :expire_time => Time.now.to_i+(7 * 24 * 60 * 60), # in one week
+        :initial_layout_class_list => ['focus', 'inactive']
+      });
+    else
+      @token = @opentok.generate_token(@session_id)
+    end
   end
 
   def chat
