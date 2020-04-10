@@ -84,7 +84,8 @@ if (window.location.pathname == '/party') {
             if (error) {
               console.log(error);
             } else {
-              video_publisher.publishVideo(false);
+              // video_publisher.publishVideo(false);
+              turnCamerasOff();
               session.publish(screen_publisher, function(error) {
                 if (error) {
                   console.log(error);
@@ -153,4 +154,14 @@ function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function turnCamerasOff() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", '/unpublish', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({
+    action: 'off',
+    sessionId: session_id
+  }));
 }
