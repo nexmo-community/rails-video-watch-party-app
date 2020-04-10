@@ -8,7 +8,7 @@ class VideoController < ApplicationController
     @api_secret = ENV['OPENTOK_API_SECRET']
     session = @opentok.create_session
     @session_id = session.session_id
-    @token = @opentok.generate_token(@session_id, {:role => :moderator})
+    @token = session.generate_token
   end
 
   def chat

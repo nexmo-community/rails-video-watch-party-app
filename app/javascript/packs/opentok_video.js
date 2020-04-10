@@ -1,6 +1,6 @@
 const OpenTok = require('opentok');
 var opentok = new OpenTok(api_key, api_secret);
-
+var session = ''
 document.addEventListener('DOMContentLoaded', function() {
   // Hide or show watch party link based on participant
   var participant = getCookie("name");
@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   // Initialize an OpenTok Session object
-  var session = OT.initSession(api_key, session_id);
+  if (session == '') {
+    session = OT.initSession(api_key, session_id);
+  }
 
   // Initialize a Publisher, and place it into the element with id="publisher"
   var video_publisher = OT.initPublisher('publisher', {
