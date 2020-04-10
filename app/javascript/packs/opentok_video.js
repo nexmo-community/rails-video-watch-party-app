@@ -78,6 +78,7 @@ if (window.location.pathname == '/party') {
           var publishOptions = {};
           publishOptions.maxResolution = { width: 1920, height: 1080 };
           publishOptions.videoSource = 'screen';
+          publishOptions.insertMode = 'replace';
           screen_publisher = OT.initPublisher('publisher', publishOptions,
           function(error) {
             if (error) {
