@@ -1,5 +1,5 @@
 require 'opentok'
-require 'byebug'
+
 class VideoController < ApplicationController
   skip_before_action :verify_authenticity_token
   @@opentok = OpenTok::OpenTok.new ENV['OPENTOK_API_KEY'], ENV['OPENTOK_API_SECRET']
