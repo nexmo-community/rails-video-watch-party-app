@@ -83,7 +83,7 @@ if (window.location.pathname == '/party') {
             if (error) {
               console.log(error);
             } else {
-              cameraStopStreaming(video_publisher);
+              video_publisher.publishVideo(false);
               session.publish(screen_publisher, function(error) {
                 if (error) {
                   console.log(error);
