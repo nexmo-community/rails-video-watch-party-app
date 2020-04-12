@@ -74,12 +74,19 @@ if (window.location.pathname == '/party') {
           // Dark mode
           document.body.style = 'background-color:black'
 
+          // Hide cameras
+          var publisherArea = document.getElementById("publisher");
+          var subscribersArea = document.getElementById("subscribers");
+          publisherArea.style.display = "none";
+          subscribersArea.style.display = "none";
+
           // Share screen
           var publishOptions = {};
-          publishOptions.maxResolution = { width: 1920, height: 1080 };
+          publishOptions.maxResolution = { width: '100%', height: '100%' };
           publishOptions.videoSource = 'screen';
           publishOptions.insertMode = 'replace';
-          screen_publisher = OT.initPublisher('publisher', publishOptions,
+          publishOptions.fitMode = 'fill';
+          screen_publisher = OT.initPublisher('screenshare', publishOptions,
           function(error) {
             if (error) {
               console.log(error);

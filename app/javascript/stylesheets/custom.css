@@ -1,3 +1,8 @@
+#videos .container-fluid {
+  padding-bottom: 100%;
+  margin-bottom: -100%;
+}
+
 #history {
   width: 100%;
   height: calc(100% - 40px);
@@ -23,4 +28,9 @@
 #publisher {
   border: 3px solid white;
   border-radius: 3px;
+}
+
+#screenshare {
+  padding-bottom: 100%;
+  margin-bottom: -100%;
 }

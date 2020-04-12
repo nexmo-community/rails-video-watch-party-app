@@ -35,7 +35,7 @@ class VideoController < ApplicationController
     if params[:video][:action] == 'off'
       @streams = @@opentok.streams.all(params[:video][:sessionId])
       @streams.each do |stream|
-        @streams.reject! { |stream| stream.videoType == 'camera' }
+        stream_item = @@opentok.streams.find(params[:video][:sessionId], stream.id)
       end
     end
   end
