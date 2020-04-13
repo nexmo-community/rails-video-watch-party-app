@@ -5,7 +5,6 @@ if (window.location.pathname == '/party') {
   document.addEventListener('DOMContentLoaded', function() {
   // Hide or show watch party link based on participant
     if (name != '' && window.location.pathname == '/party') {
-      var participant = getCookie("name");
       var watchLink = document.getElementById("watch-mode");
       if (name == "Yehuda") {
         watchLink.style.display = "block";
@@ -24,7 +23,7 @@ if (window.location.pathname == '/party') {
       }, function(error) {
         if (error) {
           console.error('Failed to initialise publisher', error);
-        }
+        };
       });
 
       // Attach event handlers
@@ -71,41 +70,11 @@ if (window.location.pathname == '/party') {
         if (clickStatus == 'off') {
           clickStatus = 'on';
 
-          // Dark mode
-          document.body.style = 'background-color:black'
+          // Go to screenshare view
+          turnScreenshareOn();
 
-          // Hide cameras
-          var publisherArea = document.getElementById("publisher");
-          var subscribersArea = document.getElementById("subscribers");
-          publisherArea.style.display = "none";
-          subscribersArea.style.display = "none";
-          reloadCss();
-
-          // Share screen
-          var publishOptions = {};
-          publishOptions.maxResolution = { width: '100%', height: '100%' };
-          publishOptions.videoSource = 'screen';
-          publishOptions.insertMode = 'replace';
-          publishOptions.fitMode = 'fill';
-          screen_publisher = OT.initPublisher('screenshare', publishOptions,
-          function(error) {
-            if (error) {
-              console.log(error);
-            } else {
-              // video_publisher.publishVideo(false);
-              turnCamerasOff();
-              session.publish(screen_publisher, function(error) {
-                if (error) {
-                  console.log(error);
-                }
-              })
-            }
-          })
         } else if (clickStatus == 'on') {
           clickStatus = 'off';
-
-          // Light mode
-          document.body.style = 'background-color:white'
 
           // Turn screen share off
           // TODO: Build redirect back to republishing video cameras
@@ -120,7 +89,7 @@ if (window.location.pathname == '/party') {
 
         session.signal({
           type: 'msg',
-          data: participant + ": " + msgTxt.value
+          data: name + ": " + msgTxt.value
         }, function(error) {
         if (error) {
           console.log('Error sending signal:', error.name, error.message);
@@ -164,20 +133,10 @@ function getCookie(name) {
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
-// Turn all cameras off
-function turnCamerasOff() {
+// Go to screenshare view
+function turnScreenshareOn() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", '/unpublish', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({
-    action: 'off',
-    sessionId: session_id
-  }));
-}
-
-// Reload CSS
-function reloadCss() {
-  for (var link of document.querySelectorAll("link[rel=stylesheet]")) {
-    link.href = link.href.replace(/\?.*|$/, "?" + Date.now())
-  }
-}
+  xhr.open("GET", "/screenshare?name=" + name, true);
+  xhr.send();
+  window.location.replace('/screenshare?name=' + name);
+};

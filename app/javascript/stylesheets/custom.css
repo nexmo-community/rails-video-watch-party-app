@@ -1,4 +1,4 @@
-#videos .container-fluid {
+.videos .container-fluid {
   padding-bottom: 100%;
   margin-bottom: -100%;
 }
@@ -18,11 +18,13 @@
     margin-left: 10px;
 }
 
-#videos {
+.videos {
   position: relative;
   width: 70%;
   height: 100%;
   float: left;
+  padding-bottom: 65%;
+  margin-bottom: -100%;
 }
 
 #publisher {

@@ -31,14 +31,17 @@ class VideoController < ApplicationController
   def chat
   end
 
-  def destroy
-    if params[:video][:action] == 'off'
-      @streams = @@opentok.streams.all(params[:video][:sessionId])
-      @streams.each do |stream|
-        stream_item = @@opentok.streams.find(params[:video][:sessionId], stream.id)
-      end
-      redirect_back(fallback_location: party_path)
+  def screenshare
+    @name ||= params[:name]
+    @api_key = ENV['OPENTOK_API_KEY']
+    @api_secret = ENV['OPENTOK_API_SECRET']
+    @session_id = Session.create_or_load_session_id
+    if @name == 'Yehuda'
+      @token = @@opentok.generate_token(@session_id, {role: :moderator, data: 'name=Yehuda'})
+    else
+      @token = @@opentok.generate_token(@session_id)
     end
+    @background = 'black;'
   end
 
   def webhook
