@@ -17,7 +17,7 @@ class VideoController < ApplicationController
   end
 
   def index
-    @name = params[:name]
+    @name ||= params[:name]
     @api_key = ENV['OPENTOK_API_KEY']
     @api_secret = ENV['OPENTOK_API_SECRET']
     @session_id = Session.create_or_load_session_id
@@ -37,6 +37,7 @@ class VideoController < ApplicationController
       @streams.each do |stream|
         stream_item = @@opentok.streams.find(params[:video][:sessionId], stream.id)
       end
+      redirect_back(fallback_location: party_path)
     end
   end
 
