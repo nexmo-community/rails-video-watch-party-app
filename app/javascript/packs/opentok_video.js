@@ -79,6 +79,7 @@ if (window.location.pathname == '/party') {
           var subscribersArea = document.getElementById("subscribers");
           publisherArea.style.display = "none";
           subscribersArea.style.display = "none";
+          reloadCss();
 
           // Share screen
           var publishOptions = {};
@@ -163,6 +164,7 @@ function getCookie(name) {
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
+// Turn all cameras off
 function turnCamerasOff() {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", '/unpublish', true);
@@ -171,4 +173,11 @@ function turnCamerasOff() {
     action: 'off',
     sessionId: session_id
   }));
+}
+
+// Reload CSS
+function reloadCss() {
+  for (var link of document.querySelectorAll("link[rel=stylesheet]")) {
+    link.href = link.href.replace(/\?.*|$/, "?" + Date.now())
+  }
 }
