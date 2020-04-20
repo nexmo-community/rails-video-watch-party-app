@@ -1,0 +1,54 @@
+<script type ="text/javascript">
+  var api_key = '<%= @api_key %>';
+  var api_secret = '<%= @api_secret %>';
+  var session_id = '<%= @session_id %>';
+  var token = '<%= @token %>';
+  var name = '<%= @name %>';
+
+  // reload page to render with variables
+  (function() {
+    if(window.localStorage) {
+      if(!localStorage.getItem('screenshareFirstLoad')) {
+        localStorage['screenshareFirstLoad'] = true;
+        window.location.reload();
+    } else
+      localStorage.removeItem('screenshareFirstLoad');
+    }
+  })();
+</script>
+
+<div class="container-fluid screenshare">
+  
+  <!-- HEADER -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">יום הולדת של יהודה 🥳</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav">
+        <a href="#" class="nav-item nav-link active">בית</a>
+        <a href="#" id="watch-mode" class="nav-item nav-link">WATCH MODE OFF</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BODY -->
+
+  <div class="container-fluid w-100 h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="videos col-8 align-self-center">
+      <div id="screenshare"></div>
+    </div>
+    <div class="col-4 align-right">
+      <p id="history"></p>
+      <%= form_with(url: "/chat/send", method: "post") do %>
+        <%= text_field_tag :message, nil, placeholder: 'ההודעה שלך עוברת לכאן' %>
+        <%= submit_tag("שלח") %>
+      <% end %>
+    </div>
+  </div>  
+</div>
+
+
