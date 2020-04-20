@@ -1,0 +1,22 @@
+{
+  "name": "Vonage Video Watch Party APP",
+  "description": "Run a video watch pary",
+  "keywords": ["rails", "javascript", "ruby", "vonage", "video"],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "OPENTOK_API_KEY": {
+      "description": "Please provide your OpenTok API key",
+      "value": "api key goes here"
+    },
+    "OPENTOK_API_SECRET": {
+      "description": "Please provide your OpenTok API secret",
+      "value": "api secret goes here"
+    },
+    "MODERATOR_NAME": {
+      "description": "Please provide the name of the moderator",
+      "value": "moderator name goes here"
+    }
+  }
+}

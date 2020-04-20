@@ -4,6 +4,7 @@
 
 <img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Chat with your friends while watching a video together!
 
@@ -12,6 +13,7 @@ This is a video app, which lets people talk via video conferencing, and when rea
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
+    * [Deploying to Heroku](#deploying-to-heroku)
 * [License](#license)
 
 ## Requirements
@@ -41,6 +43,14 @@ privileges include the ability to switch between video chat and screen share mod
 
 Once you have done that, you can start your app locally by running `bundle exec rails s` from the command line and
 navigate to `localhost:3000` in your web browser.
+
+### Deploying to Heroku
+
+You can deploy the application directly from this GitHub repository by clicking on the `Deploy to Heroku` button at the top of this README. Once you do that you still must set your Vonage OpenTok API credentials and information in Heroku. You can either do so at the time you are initializing your application after you have the clicked the `Deploy to Heroku` button above, or after from within the Heroku Dashboard.
+
+After you have clicked the above `Deploy to Heroku` button, you will see three `config vars` in the Heroku deployment settings. Add your Vonage OpenTok API credentials and moderator name in the appropriate value box for each key before clicking the final `Deploy app` button. This will ensure your application is deployed to Heroku with your information.
+
+Alternatively, you can do so from with your Heroku Dashboard's application settings by [managing the config vars](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard) for your Video Watch Party app after deploying. You will need to add the three environment variables listed above in the [Installation and Usage](#installation-and-usage) section of this README: `OPENTOK_API_KEY`, `OPENTOK_API_SECRET`, `MODERATOR_NAME`. 
 
 ## License
 
