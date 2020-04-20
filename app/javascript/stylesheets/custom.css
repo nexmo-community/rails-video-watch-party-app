@@ -10,7 +10,7 @@
 #history {
   width: 100%;
   height: calc(100% - 40px);
-  overflow: auto;
+  overflow-y: scroll;
 }
 #history .mine {
     color: #00FF00;
