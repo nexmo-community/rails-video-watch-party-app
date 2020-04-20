@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">ברוכים הבאים למסיבה!</h1>
+    <p class="lead">מה השם הפרטי שלך?</p>
+    <%= form_with(url: "/name", method: "post") do %>
+      <%= text_field_tag(:name) %>
+      <%= submit_tag "שלח", :class => 'btn btn-primary btn-lg' %>
+    <% end %>
+  </div>
+</div>

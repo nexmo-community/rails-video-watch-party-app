@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 
 import './opentok_video.js'
+import './opentok_screenshare.js'
 import '../stylesheets/application'
 import './bootstrap_custom.js'
 

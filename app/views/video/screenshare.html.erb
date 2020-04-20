@@ -8,16 +8,16 @@
   // reload page to render with variables
   (function() {
     if(window.localStorage) {
-      if(!localStorage.getItem('firstLoad')) {
-        localStorage['firstLoad'] = true;
+      if(!localStorage.getItem('screenshareFirstLoad')) {
+        localStorage['screenshareFirstLoad'] = true;
         window.location.reload();
     } else
-      localStorage.removeItem('firstLoad');
+      localStorage.removeItem('screenshareFirstLoad');
     }
   })();
 </script>
 
-<div class="container-fluid">
+<div class="container-fluid screenshare">
   
   <!-- HEADER -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -29,7 +29,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav">
         <a href="#" class="nav-item nav-link active">בית</a>
-        <a href="#" id="watch-mode" class="nav-item nav-link">WATCH MODE ON</a>
+        <a href="#" id="watch-mode" class="nav-item nav-link">WATCH MODE OFF</a>
       </div>
     </div>
   </nav>
@@ -39,8 +39,6 @@
   <div class="container-fluid w-100 h-100">
   <div class="row h-100 justify-content-center align-items-center">
     <div class="videos col-8 align-self-center">
-      <div id="publisher"></div>
-      <div id="subscribers"></div> 
       <div id="screenshare"></div>
     </div>
     <div class="col-4 align-right">
