@@ -1,3 +1,7 @@
+#audio {
+  display: none;
+}
+
 .videos .container-fluid {
   padding-bottom: 100%;
   margin-bottom: -100%;

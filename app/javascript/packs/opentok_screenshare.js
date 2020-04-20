@@ -3,53 +3,76 @@ var opentok = new OpenTok(api_key, api_secret);
 var session = ''
 if (window.location.pathname == '/screenshare') {
   document.addEventListener('DOMContentLoaded', function() {
-  // Hide or show watch party link based on participant
+    // Initialize an OpenTok Session object
+    if (session == '') {
+      session = OT.initSession(api_key, session_id);
+    }
+
+    // Hide or show watch party link based on participant
     if (name != '' && window.location.pathname == '/screenshare') {
-      console.log('inside the second if')
       var watchLink = document.getElementById("watch-mode");
       if (name == "Yehuda") {
         watchLink.style.display = "block";
+        // Share screen
+        var publishOptions = {};
+        publishOptions.videoSource = 'screen';
+        publishOptions.insertMode = 'append';
+        publishOptions.height = '100%',
+        publishOptions.width = '100%'
+        screen_publisher = OT.initPublisher('screenshare', publishOptions,
+        function(error) {
+          if (error) {
+            console.log(error);
+          } else {
+            session.publish(screen_publisher, function(error) {
+              if (error) {
+                console.log(error);
+              };
+            });
+          };
+        });
+
+        var audioPublishOptions = {};
+        audioPublishOptions.insertMode = 'append';
+        audioPublishOptions.publishVideo = false;
+        audio_publisher = OT.initPublisher('audio', audioPublishOptions,
+        function(error) {
+          if (error) {
+            console.log(error);
+          } else {
+            session.publish(audio_publisher, function(error) {
+              if (error) {
+                console.log(error);
+              }
+            });
+          };
+        });
+
+        // screen share mode off if clicked off
+        // Set click status
+        var clickStatus = 'on';
+        watchLink.addEventListener('click', function(event) {
+          event.preventDefault();
+          if (clickStatus == 'on') {
+            clickStatus = 'off';
+            turnScreenshareOff(session);
+          };
+        });
       } else {
         watchLink.style.display = "none";
+        session.on({
+          streamCreated: function(event) {
+            // Subscribe to the stream that caused this event, and place it into the element with id="subscribers" 
+            session.subscribe(event.stream, 'screenshare', {
+              insertMode: 'append',
+            }, function(error) {
+              if (error) {
+                console.error('Failed to subscribe', error);
+              }
+            });
+          }
+        });
       };
-
-      console.log(session);
-      // Initialize an OpenTok Session object
-      if (session == '') {
-        session = OT.initSession(api_key, session_id);
-      }
-
-      // Share screen
-      var publishOptions = {};
-      publishOptions.videoSource = 'screen';
-      publishOptions.insertMode = 'append';
-      publishOptions.fitMode = 'cover';
-      screen_publisher = OT.initPublisher('screenshare', publishOptions,
-      function(error) {
-        if (error) {
-          console.log(error);
-        } else {
-          session.publish(screen_publisher, function(error) {
-            if (error) {
-              console.log(error);
-            };
-          });
-        };
-      });
-
-      // screen share mode off if clicked off
-      // Set click status
-      var clickStatus = 'on';
-      watchLink.addEventListener('click', function(event) {
-        event.preventDefault();
-
-        if (clickStatus == 'on') {
-          clickStatus = 'off';
-
-          // TODO: GO BACK TO VIDEO CHAT
-
-        };
-      });
 
       // Connect to the Session using a 'token'
       session.connect(token, function(error) {
@@ -84,7 +107,22 @@ if (window.location.pathname == '/screenshare') {
         msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
         msgHistory.appendChild(msg);
         msg.scrollIntoView();
-      })
+      });
+
+      // Listen for Signal screenshare message
+      session.on('signal:screenshare', function screenshareCallback(event) {
+        if (event.data == 'off') {
+          window.location = '/party?name=' + name;
+        };
+      });
     };
+  });
+};
+// Go to video chat view
+function turnScreenshareOff(session) {
+  window.location = '/party?name=' + name;
+  session.signal({
+    type: 'screenshare',
+    data: 'off'
   });
 };

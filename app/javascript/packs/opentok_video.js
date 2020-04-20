@@ -71,7 +71,7 @@ if (window.location.pathname == '/party') {
           clickStatus = 'on';
 
           // Go to screenshare view
-          turnScreenshareOn();
+          turnScreenshareOn(session);
 
         } else if (clickStatus == 'on') {
           clickStatus = 'off';
@@ -107,36 +107,23 @@ if (window.location.pathname == '/party') {
         msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
         msgHistory.appendChild(msg);
         msg.scrollIntoView();
-      })
+      });
 
-      // Get all active video streams and unpublish them
-      function cameraStopStreaming(session) {
-        opentok.listStreams(session_id, function(error, streams) {
-          if (error) {
-            console.log(error.message);
-          } else {
-            streams.map(function(stream) {
-              console.log(stream.id); // '2a84cd30-3a33-917f-9150-49e454e01572'
-              session.forceUnpublish(stream);
-            });
-          };
-        });
-      };
+      // Listen for Signal screenshare message
+      session.on('signal:screenshare', function screenshareCallback(event) {
+        if (event.data == 'on') {
+          window.location = '/screenshare?name=' + name;
+        };
+      });
     };
   });
 }
 
-// Get participant name from cookie
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
 // Go to screenshare view
-function turnScreenshareOn() {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/screenshare?name=" + name, true);
-  xhr.send();
-  window.location.replace('/screenshare?name=' + name);
+function turnScreenshareOn(session) {
+  window.location = '/screenshare?name=' + name;
+  session.signal({
+    type: 'screenshare',
+    data: 'on'
+  });
 };
