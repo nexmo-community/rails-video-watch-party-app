@@ -21,8 +21,8 @@ class VideoController < ApplicationController
     @api_key = ENV['OPENTOK_API_KEY']
     @api_secret = ENV['OPENTOK_API_SECRET']
     @session_id = Session.create_or_load_session_id
-    if @name == 'Yehuda'
-      @token = @@opentok.generate_token(@session_id, {role: :moderator, data: 'name=Yehuda'})
+    if @name == ENV['MODERATOR_NAME']
+      @token = @@opentok.generate_token(@session_id, {role: :moderator})
     else
       @token = @@opentok.generate_token(@session_id)
     end
@@ -36,8 +36,8 @@ class VideoController < ApplicationController
     @api_key = ENV['OPENTOK_API_KEY']
     @api_secret = ENV['OPENTOK_API_SECRET']
     @session_id = Session.create_or_load_session_id
-    if @name == 'Yehuda'
-      @token = @@opentok.generate_token(@session_id, {role: :moderator, data: 'name=Yehuda'})
+    if @name == ENV['MODERATOR_NAME']
+      @token = @@opentok.generate_token(@session_id, {role: :moderator})
     else
       @token = @@opentok.generate_token(@session_id)
     end

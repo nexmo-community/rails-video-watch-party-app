@@ -6,7 +6,7 @@ if (window.location.pathname == '/party') {
   // Hide or show watch party link based on participant
     if (name != '' && window.location.pathname == '/party') {
       var watchLink = document.getElementById("watch-mode");
-      if (name == "Yehuda") {
+      if (name == moderator_env_name) {
         watchLink.style.display = "block";
       } else {
         watchLink.style.display = "none";

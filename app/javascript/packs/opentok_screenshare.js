@@ -11,7 +11,7 @@ if (window.location.pathname == '/screenshare') {
     // Hide or show watch party link based on participant
     if (name != '' && window.location.pathname == '/screenshare') {
       var watchLink = document.getElementById("watch-mode");
-      if (name == "Yehuda") {
+      if (name == moderator_env_name) {
         watchLink.style.display = "block";
         // Share screen
         var publishOptions = {};
