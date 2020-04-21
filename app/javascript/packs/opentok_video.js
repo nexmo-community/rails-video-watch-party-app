@@ -1,3 +1,5 @@
+import { turnScreenshareOn, setButtonDisplay, formatChatMsg } from './app_helpers.js';
+
 // declare empty global session variable
 var session = ''
 
@@ -107,26 +109,3 @@ if (window.location.pathname == '/party') {
     };
   });
 }
-
-// Go to screenshare view
-function turnScreenshareOn(session) {
-  window.location = '/screenshare?name=' + name;
-  session.signal({
-    type: 'screenshare',
-    data: 'on'
-  });
-};
-
-// Set moderator button display
-function setButtonDisplay(element) {
-  if (name == moderator_env_name) {
-    element.style.display = "block";
-  } else {
-    element.style.display = "none";
-  };
-};
-
-// Format chat message to include participant name
-function formatChatMsg(message) {
-  return `${name}: ${message}`
-};
