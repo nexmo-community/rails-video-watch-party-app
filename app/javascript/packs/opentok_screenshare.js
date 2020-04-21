@@ -21,7 +21,7 @@ if (window.location.pathname == '/screenshare') {
         publishOptions.insertMode = 'append';
         publishOptions.height = '100%',
         publishOptions.width = '100%'
-        screen_publisher = OT.initPublisher('screenshare', publishOptions,
+        var screen_publisher = OT.initPublisher('screenshare', publishOptions,
         function(error) {
           if (error) {
             console.log(error);
@@ -37,7 +37,7 @@ if (window.location.pathname == '/screenshare') {
         var audioPublishOptions = {};
         audioPublishOptions.insertMode = 'append';
         audioPublishOptions.publishVideo = false;
-        audio_publisher = OT.initPublisher('audio', audioPublishOptions,
+        var audio_publisher = OT.initPublisher('audio', audioPublishOptions,
         function(error) {
           if (error) {
             console.log(error);
