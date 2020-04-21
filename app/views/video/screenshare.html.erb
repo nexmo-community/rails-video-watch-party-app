@@ -1,10 +1,7 @@
 <script type ="text/javascript">
-  var api_key = '<%= @api_key %>';
-  var api_secret = '<%= @api_secret %>';
-  var session_id = '<%= @session_id %>';
   var token = '<%= @token %>';
   var name = '<%= @name %>';
-  var moderator_env_name = '<%= ENV['MODERATOR_NAME'] %>';
+  var moderator_env_name = '<%= @moderator_name %>';
   // reload page to render with variables
   (function() {
     if(window.localStorage) {

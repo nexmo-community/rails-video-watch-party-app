@@ -2,7 +2,17 @@ require 'opentok'
 
 class VideoController < ApplicationController
   skip_before_action :verify_authenticity_token
-  @@opentok = OpenTok::OpenTok.new ENV['OPENTOK_API_KEY'], ENV['OPENTOK_API_SECRET']
+  before_action :set_opentok_vars
+
+  def set_opentok_vars
+    opentok = OpenTok::OpenTok.new ENV['OPENTOK_API_KEY'], ENV['OPENTOK_API_SECRET']
+    @api_key = ENV['OPENTOK_API_KEY']
+    @api_secret = ENV['OPENTOK_API_SECRET']
+    @session_id = Session.create_or_load_session_id
+    @moderator_name = ENV['MODERATOR_NAME']
+    @name ||= params[:name]
+    @token = (@name == @moderator_name) ? opentok.generate_token(@session_id, {role: :moderator}) : opentok.generate_token(@session_id)
+  end
 
   def json_request?
     request.format.json?
@@ -17,30 +27,12 @@ class VideoController < ApplicationController
   end
 
   def index
-    @name ||= params[:name]
-    @api_key = ENV['OPENTOK_API_KEY']
-    @api_secret = ENV['OPENTOK_API_SECRET']
-    @session_id = Session.create_or_load_session_id
-    if @name == ENV['MODERATOR_NAME']
-      @token = @@opentok.generate_token(@session_id, {role: :moderator})
-    else
-      @token = @@opentok.generate_token(@session_id)
-    end
   end
 
   def chat
   end
 
   def screenshare
-    @name ||= params[:name]
-    @api_key = ENV['OPENTOK_API_KEY']
-    @api_secret = ENV['OPENTOK_API_SECRET']
-    @session_id = Session.create_or_load_session_id
-    if @name == ENV['MODERATOR_NAME']
-      @token = @@opentok.generate_token(@session_id, {role: :moderator})
-    else
-      @token = @@opentok.generate_token(@session_id)
-    end
     @background = 'black;'
   end
 
