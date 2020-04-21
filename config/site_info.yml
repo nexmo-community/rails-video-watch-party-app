@@ -1,3 +1,4 @@
+language: he
 lang_direction: rtl
 landing_page:
   welcome_message:
