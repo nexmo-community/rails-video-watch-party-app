@@ -1,16 +1,12 @@
-const OpenTok = require('opentok');
-var opentok = new OpenTok(api_key, api_secret);
+// declare empty global session variable
 var session = ''
+
 if (window.location.pathname == '/party') {
   document.addEventListener('DOMContentLoaded', function() {
   // Hide or show watch party link based on participant
     if (name != '' && window.location.pathname == '/party') {
       var watchLink = document.getElementById("watch-mode");
-      if (name == moderator_env_name) {
-        watchLink.style.display = "block";
-      } else {
-        watchLink.style.display = "none";
-      };
+      setButtonDisplay(watchLink);
 
       // Initialize an OpenTok Session object
       if (session == '') {
@@ -68,18 +64,11 @@ if (window.location.pathname == '/party') {
         event.preventDefault();
 
         if (clickStatus == 'off') {
-          clickStatus = 'on';
-
           // Go to screenshare view
           turnScreenshareOn(session);
 
-        } else if (clickStatus == 'on') {
-          clickStatus = 'off';
-
-          // Turn screen share off
-          // TODO: Build redirect back to republishing video cameras
-        }
-      })
+        };
+      });
 
       // Listen for new chat submissions
       var form = document.querySelector('form');
@@ -89,7 +78,7 @@ if (window.location.pathname == '/party') {
 
         session.signal({
           type: 'msg',
-          data: name + ": " + msgTxt.value
+          data: formatChatMsg(msgTxt.value) // name + ": " + msgTxt.value
         }, function(error) {
         if (error) {
           console.log('Error sending signal:', error.name, error.message);
@@ -126,4 +115,18 @@ function turnScreenshareOn(session) {
     type: 'screenshare',
     data: 'on'
   });
+};
+
+// Set moderator button display
+function setButtonDisplay(element) {
+  if (name == moderator_env_name) {
+    element.style.display = "block";
+  } else {
+    element.style.display = "none";
+  };
+};
+
+// Format chat message to include participant name
+function formatChatMsg(message) {
+  return `${name}: ${message}`
 };

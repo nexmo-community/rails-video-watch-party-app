@@ -1,6 +1,6 @@
-const OpenTok = require('opentok');
-var opentok = new OpenTok(api_key, api_secret);
+// declare empty global session variable
 var session = ''
+
 if (window.location.pathname == '/screenshare') {
   document.addEventListener('DOMContentLoaded', function() {
     // Initialize an OpenTok Session object
