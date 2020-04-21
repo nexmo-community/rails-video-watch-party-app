@@ -1,10 +1,18 @@
 // Go to screenshare view
-export function turnScreenshareOn(session) {
-  window.location = '/screenshare?name=' + name;
-  session.signal({
-    type: 'screenshare',
-    data: 'on'
-  });
+export function screenshareMode(session, mode) {
+  if (mode == 'on') {
+    window.location = '/screenshare?name=' + name;
+    session.signal({
+      type: 'screenshare',
+      data: 'on'
+    });
+  } else if (mode == 'off') {
+    window.location = '/party?name=' + name;
+    session.signal({
+      type: 'screenshare',
+      data: 'off'
+    });    
+  };
 };
 
 // Set moderator button display

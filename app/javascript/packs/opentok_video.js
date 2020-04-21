@@ -1,4 +1,4 @@
-import { turnScreenshareOn, setButtonDisplay, formatChatMsg } from './app_helpers.js';
+import { screenshareMode, setButtonDisplay, formatChatMsg } from './app_helpers.js';
 
 // declare empty global session variable
 var session = ''
@@ -67,7 +67,7 @@ if (window.location.pathname == '/party') {
 
         if (clickStatus == 'off') {
           // Go to screenshare view
-          turnScreenshareOn(session);
+          screenshareMode(session, 'on');
 
         };
       });
