@@ -53,6 +53,7 @@ The app reads from `/config/site_info.yml` to gather data such as the website ti
 To edit the data open up `/config/site_info.yml` in your code editor. The following options are available:
 
 ```yaml
+lang: # The ISO 2 letter language code of the site, for example en for American English or he for Hebrew
 lang_direction: # The language direction of the text, values can be either rtl or ltr
 landing_page:
   welcome_message:
