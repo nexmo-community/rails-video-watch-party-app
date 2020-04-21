@@ -1,0 +1,14 @@
+lang_direction: rtl
+landing_page:
+  welcome_message:
+    text: 'ברוכים הבאים למסיבה!'
+  name_form:
+    text: 'מה השם הפרטי שלך?'
+    submit_button_text: שלח
+navbar:
+  title:
+    text: יום הולדת של יהודה 🥳
+text_chat:
+  submit_button_text: שלח
+  placeholder_text: 'ההודעה שלך עוברת לכאן'
+
