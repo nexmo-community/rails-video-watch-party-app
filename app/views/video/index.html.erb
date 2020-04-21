@@ -40,11 +40,7 @@
       <div id="subscribers" class="row"></div> 
     </div>
     <div class="col-4 align-right">
-      <p id="history"></p>
-      <%= form_with(url: "/chat/send", method: "post") do %>
-        <%= text_field_tag :message, nil, placeholder: 'ההודעה שלך עוברת לכאן' %>
-        <%= submit_tag("שלח") %>
-      <% end %>
+      <%= render partial: 'chat' %>
     </div>
   </div>  
 </div>

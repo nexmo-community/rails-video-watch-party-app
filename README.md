@@ -13,6 +13,7 @@ This is a video app, which lets people talk via video conferencing, and when rea
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
+    * [Customizing The App](#customizing-the-app)
     * [Deploying to Heroku](#deploying-to-heroku)
 * [License](#license)
 
@@ -26,6 +27,7 @@ Once you clone the repository, first change into the directory and execute the f
 
 ```bash
 $ bundle install
+$ yarn install
 $ rake db:migrate
 ```
 
@@ -43,6 +45,30 @@ privileges include the ability to switch between video chat and screen share mod
 
 Once you have done that, you can start your app locally by running `bundle exec rails s` from the command line and
 navigate to `localhost:3000` in your web browser.
+
+### Customizing the App
+
+The app reads from `/config/site_info.yml` to gather data such as the website title and the various textual elements of the site. This is entirely customizable. 
+
+To edit the data open up `/config/site_info.yml` in your code editor. The following options are available:
+
+```yaml
+lang_direction: # The language direction of the text, values can be either rtl or ltr
+landing_page:
+  welcome_message:
+    text: # The landing page welcome message, any string of text
+  name_form:
+    text: # The text in the form asking for the name of the participant, any string of text
+    submit_button_text: # The text for the name form submit button, any string of text
+navbar:
+  title:
+    text: # The title in the navigation bar, any string of text
+text_chat:
+  submit_button_text: # The text for the chat form submit button, any string of text
+  placeholder_text: # The placeholder text for the chat form text form, any string of text
+```
+
+If you do not edit the data in the `site_info.yml`, the defaults in the file in this repository will be rendered.
 
 ### Deploying to Heroku
 
