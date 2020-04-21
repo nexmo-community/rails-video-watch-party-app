@@ -1,3 +1,5 @@
+import { screenshareMode, setButtonDisplay, formatChatMsg } from './app_helpers.js';
+
 // declare empty global session variable
 var session = ''
 
@@ -55,7 +57,7 @@ if (window.location.pathname == '/screenshare') {
           event.preventDefault();
           if (clickStatus == 'on') {
             clickStatus = 'off';
-            turnScreenshareOff(session);
+            screenshareMode(session, 'off');
           };
         });
       } else {
@@ -89,7 +91,7 @@ if (window.location.pathname == '/screenshare') {
 
         session.signal({
           type: 'msg',
-          data: name + ": " + msgTxt.value
+          data: formatChatMsg(msgTxt.value)
         }, function(error) {
         if (error) {
           console.log('Error sending signal:', error.name, error.message);
@@ -116,13 +118,5 @@ if (window.location.pathname == '/screenshare') {
         };
       });
     };
-  });
-};
-// Go to video chat view
-function turnScreenshareOff(session) {
-  window.location = '/party?name=' + name;
-  session.signal({
-    type: 'screenshare',
-    data: 'off'
   });
 };

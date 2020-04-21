@@ -80,7 +80,7 @@ if (window.location.pathname == '/party') {
 
         session.signal({
           type: 'msg',
-          data: formatChatMsg(msgTxt.value) // name + ": " + msgTxt.value
+          data: formatChatMsg(msgTxt.value)
         }, function(error) {
         if (error) {
           console.log('Error sending signal:', error.name, error.message);
