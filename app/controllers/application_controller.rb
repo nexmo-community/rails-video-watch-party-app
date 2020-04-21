@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   def set_site_info
     config = YAML.load_file("#{Rails.root}/config/site_info.yml")
+    @lang = config["language"]
     @lang_dir = config["lang_direction"]
     @welcome_message = config["landing_page"]["welcome_message"]["text"]
     @name_form_text = config["landing_page"]["name_form"]["text"]
