@@ -27,6 +27,7 @@ Once you clone the repository, first change into the directory and execute the f
 
 ```bash
 $ bundle install
+$ yarn install
 $ rake db:migrate
 ```
 
