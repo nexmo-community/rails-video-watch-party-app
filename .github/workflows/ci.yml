@@ -64,6 +64,8 @@ jobs:
       env:
         RAILS_ENV: test
         POSTGRES_USERNAME: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
         POSTGRES_PORT: 5432
         FORCE_COLOR: true
       run: |
