@@ -145,7 +145,7 @@ header {
   min-width: 8em;
   min-height: 8em;
   align-self: flex-end;
-  z-index: -1;
+  z-index: 1;
 }
 
 .audio {
