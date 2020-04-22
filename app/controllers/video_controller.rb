@@ -33,7 +33,7 @@ class VideoController < ApplicationController
   end
 
   def screenshare
-    @background = 'black;'
+    @darkmode = 'dark'
   end
 
   def webhook

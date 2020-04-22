@@ -18,6 +18,8 @@ if (window.location.pathname == '/party') {
       // Initialize a Publisher, and place it into the element with id="publisher"
       var video_publisher = OT.initPublisher('publisher', {
         insertMode: 'append',
+        width: "100%",
+        height: "100%"
       }, function(error) {
         if (error) {
           console.error('Failed to initialise publisher', error);
@@ -42,6 +44,8 @@ if (window.location.pathname == '/party') {
           // Subscribe to the stream that caused this event, and place it into the element with id="subscribers" 
           session.subscribe(event.stream, 'subscribers', {
             insertMode: 'append',
+            width: "100%",
+            height: "100%"
           }, function(error) {
             if (error) {
               console.error('Failed to subscribe', error);
@@ -61,14 +65,12 @@ if (window.location.pathname == '/party') {
       // Party mode if party mode clicked on
       // Set click status
       var clickStatus = 'off';
-      var screen_publisher = '';
       watchLink.addEventListener('click', function(event) {
         event.preventDefault();
 
         if (clickStatus == 'off') {
           // Go to screenshare view
           screenshareMode(session, 'on');
-
         };
       });
 

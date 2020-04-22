@@ -1,4 +1,4 @@
-import { screenshareMode, setButtonDisplay, formatChatMsg } from './app_helpers.js';
+import { screenshareMode, formatChatMsg } from './app_helpers.js';
 
 // declare empty global session variable
 var session = ''
