@@ -37,5 +37,11 @@ RSpec.describe "Videos", type: :request do
 
       expect(request.params['name']).to eq('Ben')
     end
+
+    it 'only allows permitted parameters' do
+      post '/name', :params => { :not_allowed => true }
+
+      expect(response.body).not_to include('not_allowed')
+    end
   end
 end
