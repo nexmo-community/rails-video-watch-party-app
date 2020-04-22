@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'opentok'
 
 class VideoController < ApplicationController
@@ -11,33 +13,29 @@ class VideoController < ApplicationController
     @session_id = Session.create_or_load_session_id
     @moderator_name = ENV['MODERATOR_NAME']
     @name ||= params[:name]
-    @token = (@name == @moderator_name) ? opentok.generate_token(@session_id, {role: :moderator}) : opentok.generate_token(@session_id)
+    @token = @name == @moderator_name ? opentok.generate_token(@session_id, { role: :moderator }) : opentok.generate_token(@session_id)
   end
 
   def json_request?
     request.format.json?
   end
 
-  def landing
-  end
+  def landing; end
 
   def name
     @name = name_params[:name]
-    redirect_to party_url(:name => @name)
+    redirect_to party_url(name: @name)
   end
 
-  def index
-  end
+  def index; end
 
-  def chat
-  end
+  def chat; end
 
   def screenshare
     @darkmode = 'dark'
   end
 
-  def webhook
-  end
+  def webhook; end
 
   private
 
