@@ -14,35 +14,22 @@
   })();
 </script>
 
-<div class="container-fluid screenshare h-100">
-  
-  <!-- HEADER -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">יום הולדת של יהודה 🥳</a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<header>
+  <h1>יום הולדת של יהודה 🥳</h1>
+  <button id="watch-mode">Watch Mode Off</button>
+</header>
 
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav">
-        <a href="#" class="nav-item nav-link active">בית</a>
-        <a href="#" id="watch-mode" class="nav-item nav-link">WATCH MODE OFF</a>
-      </div>
-    </div>
-  </nav>
+<main class="app">
+  <div class="videos">
+    <div class="screenshare" id="screenshare"></div>
+    <div class="audio" id="audio"></div> 
+  </div>
 
-  <!-- BODY -->
+  <aside class="chat">
+    <%= render partial: 'chat' %>
+  </aside>
+</main>
 
-  <div class="container-fluid w-100 h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="videos col-8 align-self-center h-100">
-      <div id="screenshare" class="h-100"></div>
-      <div id="audio" class="d-none"></div>
-    </div>
-    <div class="col-4 align-right">
-      <%= render partial: 'chat' %>
-    </div>
-  </div>  
-</div>
+
 
 

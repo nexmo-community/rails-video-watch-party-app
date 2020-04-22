@@ -7,7 +7,6 @@ import './app_helpers.js'
 import './opentok_video.js'
 import './opentok_screenshare.js'
 import '../stylesheets/application'
-import './bootstrap_custom.js'
 
 require("@rails/ujs").start()
 require("turbolinks").start()

@@ -1,25 +1,10 @@
-#audio {
-  display: none;
-}
-
-.videos .container-fluid {
-  padding-bottom: 100%;
-  margin-bottom: -100%;
-}
-
-#history {
-  width: 100%;
-  height: calc(100% - 40px);
-  overflow-y: scroll;
-}
-#history .mine {
-    color: #00FF00;
-    text-align: right;
-    margin-right: 10px;
-}
-#history .theirs {
-    color: #00FFFF;
-    margin-left: 10px;
+:root {
+  --main: #343a40;
+  --txt-alt: white;
+  --txt: black;
+  --background: white;
+  --chat-mine: darkgreen;
+  --chat-theirs: indigo;
 }
 
 html {
@@ -39,11 +24,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-}
- 
-header {
-  text-align: center;
-  padding: 0.5em;
+  background-color: var(--background);
 }
  
 main {
@@ -51,25 +32,107 @@ main {
   display: flex;
   position: relative;
 }
- 
-form {
+
+input {
+  font-size: inherit;
+  padding: 0.5em;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+}
+
+button,
+input[type="submit"] {
+  font-size: inherit;
+  padding: 0.5em;
+  border: 0;
+  background-color: var(--main);
+  color: var(--txt-alt);
+  border-radius: 4px;
+}
+
+.landing {
+  margin: auto;
+  text-align: center;
+  font-size: 125%;
+}
+
+.landing form {
   display: flex;
   flex-direction: column;
   margin: auto;
 }
- 
-input {
-  font-size: inherit;
-  padding: 0.5em;
+
+.landing input,
+.landing p {
   margin-bottom: 1em;
 }
- 
-button {
-  font-size: inherit;
+
+header {
+  background-color: var(--main);
+  color: var(--txt-alt);
   padding: 0.5em;
+  height: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat {
+  width: 18em;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 4em);
+}
+
+.messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  padding: 1em;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+  scrollbar-color: #c1c1c1 var(--background);
+}
+
+.messages p {
+  margin-bottom: 0.5em;
+}
+
+.mine {
+  color: var(--chat-mine);
+}
+
+.theirs {
+  color: var(--chat-theirs);
+}
+
+.chat form {
+  display: flex;
+  padding: 1em;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+}
+
+.chat input[type="text"] {
+  flex: 1;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: var(--background);
+  color: var(--txt);
+}
+
+.chat input[type="submit"] {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.videos {
+  flex: 1;
+  display: flex;
+  position: relative;
 }
  
-.subscriber {
+.subscriber,
+.screenshare {
   width: 100%;
   height: 100%;
   display: flex;
@@ -82,4 +145,22 @@ button {
   min-width: 8em;
   min-height: 8em;
   align-self: flex-end;
+  z-index: 1;
+}
+
+.audio {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.audio {
+  display: none;
+}
+
+.dark {
+  --background: black;
+  --chat-mine: lime;
+  --chat-theirs: violet;
+  --txt: white;
 }

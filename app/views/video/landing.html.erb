@@ -1,10 +1,10 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4"><%= @welcome_message %></h1>
-    <p class="lead"><%= @name_form_text %></p>
+<main>
+  <div class="landing">
+    <h1><%= @welcome_message %></h1>
+    <p><%= @name_form_text %></p>
     <%= form_with(url: "/name", method: "post") do %>
       <%= text_field_tag(:name) %>
       <%= submit_tag @name_form_submit_button_text, :class => 'btn btn-primary btn-lg' %>
     <% end %>
   </div>
-</div>
+</main>
