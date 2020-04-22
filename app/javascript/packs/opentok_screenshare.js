@@ -64,14 +64,28 @@ if (window.location.pathname == '/screenshare') {
         watchLink.style.display = "none";
         session.on({
           streamCreated: function(event) {
-            // Subscribe to the stream that caused this event, and place it into the element with id="subscribers" 
-            session.subscribe(event.stream, 'screenshare', {
-              insertMode: 'append',
-            }, function(error) {
-              if (error) {
-                console.error('Failed to subscribe', error);
-              }
-            });
+            console.log(event);
+            if (event.stream.hasVideo == true) {
+              session.subscribe(event.stream, 'screenshare', {
+                insertMode: 'append',
+                width: '100%',
+                height: '100%'
+              }, function(error) {
+                if (error) {
+                  console.error('Failed to subscribe to video feed', error);
+                }
+              });
+            } else if (event.stream.hasVideo == false ) {
+              session.subscribe(event.stream, 'audio', {
+                insertMode: 'append',
+                width: '0px',
+                height: '0px'
+              }, function(error) {
+                if (error) {
+                  console.error('Failed to subscribe to audio feed', error);
+                }
+              });
+            };
           }
         });
       };

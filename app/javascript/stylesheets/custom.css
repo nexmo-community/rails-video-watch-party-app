@@ -154,6 +154,10 @@ header {
   z-index: -1;
 }
 
+.audio {
+  display: none;
+}
+
 .dark {
   --background: black;
   --chat-mine: lime;
