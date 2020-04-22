@@ -11,7 +11,7 @@ jobs:
       db:
         env:
           POSTGRES_USER: postgres
-          POSTGRES_DB: video_watch_party_test
+          POSTGRES_DB: video_watch_party_development
           POSTGRES_HOST_AUTH_METHOD: trust
         image: postgres:11
         ports: ['5432:5432']
