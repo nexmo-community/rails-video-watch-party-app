@@ -2,7 +2,7 @@
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
-[![Actions Status](https://github.com/nexmo-community/rails-video-watch-party-app/workflows/ci/badge.svg)](https://github.com/nexmo-community/rails-video-watch-party-app/actions)
+[![Actions Status](https://github.com/nexmo-community/rails-video-watch-party-app/workflows/CI/badge.svg)]
 
 <img src="https://assets.tokbox.com/img/vonage/Vonage_VideoAPI_black.svg" height="48px" alt="Tokbox is now known as Vonage" />
 
