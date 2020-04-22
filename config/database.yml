@@ -24,9 +24,6 @@ default: &default
 development:
   <<: *default
   database: video_watch_party_development
-  host: <%= ENV["POSTGRES_HOST"] %>
-  username: <%= ENV["POSTGRES_USER"] %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
