@@ -3,6 +3,7 @@ AllCops:
   Exclude:
     - 'spec/**/*'
     - 'node_modules/**/*'
+    - 'vendor/bundle/**/*'
     - 'db/**/*'
     - 'config/**/*'
     - 'bin/**/*'
