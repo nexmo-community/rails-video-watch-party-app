@@ -7,13 +7,12 @@ class VideoController < ApplicationController
   before_action :set_opentok_vars
 
   def set_opentok_vars
-    opentok = OpenTok::OpenTok.new ENV['OPENTOK_API_KEY'], ENV['OPENTOK_API_SECRET']
     @api_key = ENV['OPENTOK_API_KEY']
     @api_secret = ENV['OPENTOK_API_SECRET']
     @session_id = Session.create_or_load_session_id
     @moderator_name = ENV['MODERATOR_NAME']
     @name ||= params[:name]
-    @token = @name == @moderator_name ? opentok.generate_token(@session_id, { role: :moderator }) : opentok.generate_token(@session_id)
+    @token = Session.create_token(@name, @moderator_name, @session_id)
   end
 
   def json_request?

@@ -29,4 +29,8 @@ class Session < ApplicationRecord
     @session_id = session.session_id
     @session_id
   end
+
+  def self.create_token(user_name, moderator_name, session_id)
+    @token = user_name == moderator_name ? @opentok.generate_token(session_id, { role: :moderator }) : @opentok.generate_token(session_id)
+  end
 end
