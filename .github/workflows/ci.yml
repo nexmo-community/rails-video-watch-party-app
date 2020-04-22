@@ -64,6 +64,7 @@ jobs:
       env:
         RAILS_ENV: test
         POSTGRES_USERNAME: postgres
+        POSTGRES_PORT: 5432
         FORCE_COLOR: true
       run: |
         bundle exec rails db:create
