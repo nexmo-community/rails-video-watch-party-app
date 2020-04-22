@@ -11,6 +11,9 @@ jobs:
       db:
         env:
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: localhost
+          RAILS_ENV: development
           POSTGRES_DB: video_watch_party_development
           POSTGRES_HOST_AUTH_METHOD: trust
         image: postgres:11
@@ -22,8 +25,6 @@ jobs:
           --health-retries 5
     steps:
     - uses: actions/checkout@v2
-      with:
-        submodules: recursive
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
