@@ -217,9 +217,7 @@ header {
 
 @media screen and (min-aspect-ratio: 1 / 1) {
   .chat {
-    transform: translateX(0);
     width: 20%;
     min-width: 16em;
   }
-  
 }

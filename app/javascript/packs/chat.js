@@ -6,11 +6,16 @@ export default class Chat {
     this.form = document.querySelector('form');
     this.msgTxt = document.querySelector('#message');
     this.msgHistory = document.querySelector('#history');
+    this.chatWindow = document.querySelector('.chat');
+    this.showChatBtn = document.querySelector('#showChat');
+    this.closeChatBtn = document.querySelector('#closeChat');
     this.setupEventListeners();
   }
 
   setupEventListeners() {
     let self = this;
+    console.log(this.form)
+    console.log(this.chatWindow)
     this.form.addEventListener('submit', function(event) {
       event.preventDefault();
 
@@ -32,6 +37,14 @@ export default class Chat {
       msg.className = event.from.connectionId === self.session.connection.connectionId ? 'mine' : 'theirs';
       self.msgHistory.appendChild(msg);
       msg.scrollIntoView();
+    });
+
+    this.showChatBtn.addEventListener('click', function(event) {
+      self.chatWindow.classList.add('active');
+    });
+
+    this.closeChatBtn.addEventListener('click', function(event) {
+      self.chatWindow.classList.remove('active');
     });
   }
 }
