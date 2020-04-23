@@ -189,6 +189,16 @@ header {
   display: flex;
   position: relative;
 }
+
+.subscriber.grid4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
+}
+
+.subscriber.grid9 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
+}
  
 .subscriber,
 .screenshare {
