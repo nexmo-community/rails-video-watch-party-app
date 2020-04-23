@@ -62,11 +62,20 @@ input[type="submit"] {
   display: flex;
   flex-direction: column;
   margin: auto;
+  position: relative;
 }
 
 .landing input,
 .landing p {
   margin-bottom: 1em;
+}
+
+.landing .error {
+  color: maroon;
+  position: absolute;
+  bottom: -2em;
+  width: 100%;
+  text-align: center;
 }
 
 header {

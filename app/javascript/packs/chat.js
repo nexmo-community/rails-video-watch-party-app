@@ -14,8 +14,6 @@ export default class Chat {
 
   setupEventListeners() {
     let self = this;
-    console.log(this.form)
-    console.log(this.chatWindow)
     this.form.addEventListener('submit', function(event) {
       event.preventDefault();
 

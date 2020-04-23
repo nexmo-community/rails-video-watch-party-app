@@ -2,15 +2,13 @@
   <div class="landing">
     <h1><%= @welcome_message %></h1>
     <p><%= @name_form_text %></p>
-    <% flash.each do |type, msg| %>
-      <div>
-        <%= msg %>
-      </div>
-    <% end %>
     <%= form_with(url: "/name", method: "post") do %>
       <%= text_field_tag 'name', nil, :placeholder => @name_placeholder_text %>
-      <%= text_field_tag 'password', nil, :placeholder => @password_placeholder_text %>
-      <%= submit_tag @name_form_submit_button_text, :class => 'btn btn-primary btn-lg' %>
+      <%= password_field_tag 'password', nil, :placeholder => @password_placeholder_text %>
+      <%= submit_tag @name_form_submit_button_text %>
+      <% flash.each do |type, msg| %>
+        <p class="error"><%= msg %></p>
+      <% end %>
     <% end %>
   </div>
 </main>
