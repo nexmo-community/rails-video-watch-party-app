@@ -17,6 +17,10 @@
     "MODERATOR_NAME": {
       "description": "Please provide the name of the moderator",
       "value": "moderator name goes here"
-    }
+    },
+    "PARTY_PASSWORD": {
+      "description": "Please provide the password used for participants to authenticate into the app",
+      "value": "app password goes here"
+  }
   }
 }

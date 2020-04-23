@@ -23,7 +23,11 @@ class VideoController < ApplicationController
 
   def name
     @name = name_params[:name]
-    redirect_to party_url(name: @name)
+    if name_params[:password] == ENV['PARTY_PASSWORD']
+      redirect_to party_url(name: @name)
+    else
+      redirect_to('/', flash: { error: 'Incorrect password' })
+    end
   end
 
   def index; end
@@ -39,6 +43,6 @@ class VideoController < ApplicationController
   private
 
   def name_params
-    params.permit(:name, :authenticity_token, :commit)
+    params.permit(:name, :password, :authenticity_token, :commit)
   end
 end
