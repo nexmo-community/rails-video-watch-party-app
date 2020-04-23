@@ -78,12 +78,13 @@ export default class Screenshare {
   }
 
   subscribe() {
+    var self = this;
     this.watchLink.style.display = "none";
     this.session.on({
       streamCreated: function(event) {
         console.log(event);
         if (event.stream.hasVideo == true) {
-          session.subscribe(event.stream, 'screenshare', {
+          self.session.subscribe(event.stream, 'screenshare', {
             insertMode: 'append',
             width: '100%',
             height: '100%'
@@ -93,7 +94,7 @@ export default class Screenshare {
             }
           });
         } else if (event.stream.hasVideo == false ) {
-          session.subscribe(event.stream, 'audio', {
+          self.session.subscribe(event.stream, 'audio', {
             insertMode: 'append',
             width: '0px',
             height: '0px'
