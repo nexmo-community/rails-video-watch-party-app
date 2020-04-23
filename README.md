@@ -45,6 +45,9 @@ You also must define a moderator name, which will be used to provide one user wi
 privileges include the ability to switch between video chat and screen share modes. You can define that name in the
 `.env` file within the `MODERATOR_NAME` value. 
 
+Lastly, you must set a `PARTY_PASSWORD` in your environment variables. This password will be used to allow participants
+into the application. You can define that value in the `.env` file within the `PARTY_PASSWORD` key.
+
 Once you have done that, you can start your app locally by running `bundle exec rails s` from the command line and
 navigate to `localhost:3000` in your web browser.
 
@@ -62,6 +65,8 @@ landing_page:
     text: # The landing page welcome message, any string of text
   name_form:
     text: # The text in the form asking for the name of the participant, any string of text
+    name_placeholder_text: # The placeholder for the name text field, any string of text
+    password_placeholder_text: # The placeholder for the password text field, any string of text
     submit_button_text: # The text for the name form submit button, any string of text
 navbar:
   title:
@@ -79,7 +84,7 @@ You can deploy the application directly from this GitHub repository by clicking 
 
 After you have clicked the above `Deploy to Heroku` button, you will see three `config vars` in the Heroku deployment settings. Add your Vonage OpenTok API credentials and moderator name in the appropriate value box for each key before clicking the final `Deploy app` button. This will ensure your application is deployed to Heroku with your information.
 
-Alternatively, you can do so from with your Heroku Dashboard's application settings by [managing the config vars](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard) for your Video Watch Party app after deploying. You will need to add the three environment variables listed above in the [Installation and Usage](#installation-and-usage) section of this README: `OPENTOK_API_KEY`, `OPENTOK_API_SECRET`, `MODERATOR_NAME`. 
+Alternatively, you can do so from with your Heroku Dashboard's application settings by [managing the config vars](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard) for your Video Watch Party app after deploying. You will need to add the four environment variables: `OPENTOK_API_KEY`, `OPENTOK_API_SECRET`, `MODERATOR_NAME`, `PARTY_PASSWORD`.
 
 ## License
 

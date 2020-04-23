@@ -4,7 +4,9 @@ landing_page:
   welcome_message:
     text: 'ברוכים הבאים למסיבה!'
   name_form:
-    text: 'מה השם הפרטי שלך?'
+    text: 'מה שמך הפרטי ומהי סיסמת המסיבה?'
+    name_placeholder_text: השם שלך כאן
+    password_placeholder_text: סיסמא כאן
     submit_button_text: שלח
 navbar:
   title:
