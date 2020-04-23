@@ -3,6 +3,7 @@
   --txt-alt: white;
   --txt: black;
   --background: white;
+  --chat-bg: rgba(255, 255, 255, 0.75);
   --chat-mine: darkgreen;
   --chat-theirs: indigo;
 }
@@ -25,6 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--background);
+  overflow: hidden;
 }
  
 main {
@@ -78,10 +80,57 @@ header {
 }
 
 .chat {
-  width: 18em;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 4em);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: var(--chat-bg);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.chat.active {
+  transform: translateX(0);
+}
+
+.chat-header {
+  padding: 0.5em;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-chat {
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, .2), 0 3px 6px 0 rgba(0, 0, 0, .19);
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  cursor: pointer;
+}
+
+.btn-chat svg {
+  height: 4em;
+  width: 2.5em;
+}
+
+.btn-close {
+  height: 2em;
+  width: 2em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-close svg {
+  height: 1em;
+  width: 1em;
 }
 
 .messages {
@@ -91,7 +140,7 @@ header {
   overflow-y: scroll;
   padding: 1em;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
-  scrollbar-color: #c1c1c1 var(--background);
+  scrollbar-color: #c1c1c1 transparent;
 }
 
 .messages p {
@@ -118,6 +167,7 @@ header {
   border-bottom-left-radius: 0px;
   background-color: var(--background);
   color: var(--txt);
+  min-width: 0;
 }
 
 .chat input[type="submit"] {
@@ -163,4 +213,13 @@ header {
   --chat-mine: lime;
   --chat-theirs: violet;
   --txt: white;
+}
+
+@media screen and (min-aspect-ratio: 1 / 1) {
+  .chat {
+    transform: translateX(0);
+    width: 20%;
+    min-width: 16em;
+  }
+  
 }
