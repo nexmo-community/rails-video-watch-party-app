@@ -21,6 +21,6 @@
     "PARTY_PASSWORD": {
       "description": "Please provide the password used for participants to authenticate into the app",
       "value": "app password goes here"
-  }
+    }
   }
 }
