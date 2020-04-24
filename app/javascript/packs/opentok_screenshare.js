@@ -22,6 +22,13 @@ if (window.location.pathname == '/screenshare') {
           console.error('Failed to connect', error);
         }
       });
+
+      // Listen for Signal screenshare message
+      session.on('signal:screenshare', function screenshareCallback(event) {
+        if (event.data == 'off') {
+          window.location = '/party?name=' + name;
+        };
+      });
     }
   });
 };
