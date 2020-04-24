@@ -1,13 +1,14 @@
-import { screenshareMode, setButtonDisplay } from './app_helpers.js';
+import { screenshareMode, setButtonDisplay, streamLayout } from './app_helpers.js';
 
 export default class Party {
   constructor(session) {
     this.session = session;
     this.watchLink = document.getElementById("watch-mode");
+    this.subscribers = document.getElementById("subscribers");
     this.videoPublisher = this.setupVideoPublisher();
     this.clickStatus = 'off';
     this.setupEventHandlers();
-
+    this.connectionCount = 0;
     setButtonDisplay(this.watchLink);
   }
 
@@ -49,6 +50,18 @@ export default class Party {
             console.error('Failed to subscribe', error);
           }
         });
+      },
+
+      // This function runs whenever a client connects to a session
+      connectionCreated: function(event) {
+        self.connectionCount++;
+        streamLayout(self.subscribers, self.connectionCount);
+      },
+
+      // This function runs whenever a client disconnects from the session
+      connectionDestroyed: function(event) {
+        self.connectionCount--;
+        streamLayout(self.subscribers, self.connectionCount);
       }
     });
 

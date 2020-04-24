@@ -28,3 +28,15 @@ export function setButtonDisplay(element) {
 export function formatChatMsg(message) {
   return `${name}: ${message}`
 };
+
+// Apply relevant CSS class based on number of streams
+export function streamLayout(element, count) {
+  if (count >= 6) {
+    element.classList.add("grid9");
+  } else if (count == 5) {
+    element.classList.remove("grid9");
+    element.classList.add("grid4");
+  } else if (count < 5) {
+    element.classList.remove("grid4");
+  }
+}
