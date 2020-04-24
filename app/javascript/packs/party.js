@@ -60,7 +60,7 @@ export default class Party {
 
       // This function runs whenever a client disconnects from the session
       connectionDestroyed: function(event) {
-        self.connectionCount++;
+        self.connectionCount--;
         streamLayout(self.subscribers, self.connectionCount);
       }
     });
