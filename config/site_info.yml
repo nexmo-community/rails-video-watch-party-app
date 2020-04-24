@@ -2,7 +2,7 @@ language: he
 lang_direction: rtl
 landing_page:
   welcome_message:
-    text: 'ברוכים הבאים למסיבה!'
+    text: 'ברוכים הבאים למסיבה שלי!'
   name_form:
     text: 'מה שמך הפרטי ומהי סיסמת המסיבה?'
     name_placeholder_text: השם שלך כאן
