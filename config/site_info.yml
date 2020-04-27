@@ -1,17 +1,17 @@
-language: he
-lang_direction: rtl
+language: en
+lang_direction: ltr
 landing_page:
   welcome_message:
-    text: 'ברוכים הבאים למסיבה שלי!'
+    text: 'Welcome to the Vonage Video Watch Party!'
   name_form:
-    text: 'מה שמך הפרטי ומהי סיסמת המסיבה?'
-    name_placeholder_text: השם שלך כאן
-    password_placeholder_text: סיסמא כאן
-    submit_button_text: שלח
+    text: 'What is your name and the password for the party?' 
+    name_placeholder_text: Your name here   
+    password_placeholder_text: Password here
+    submit_button_text: Submit
 navbar:
   title:
-    text: יום הולדת של יהודה 🥳
+    text: Vonage Video Watch Party 
 text_chat:
-  submit_button_text: שלח
-  placeholder_text: 'ההודעה שלך עוברת לכאן'
+  submit_button_text: Submit
+  placeholder_text: 'Enter text here'
 

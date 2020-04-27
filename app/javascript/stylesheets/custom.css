@@ -121,7 +121,7 @@ header {
   border-radius: 50%;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, .2), 0 3px 6px 0 rgba(0, 0, 0, .19);
   position: fixed;
-  left: 1em;
+  right: 1em;
   bottom: 1em;
   cursor: pointer;
 }
