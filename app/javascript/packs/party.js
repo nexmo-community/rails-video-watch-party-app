@@ -5,6 +5,7 @@ export default class Party {
     this.session = session;
     this.watchLink = document.getElementById("watch-mode");
     this.subscribers = document.getElementById("subscribers");
+    this.participantCount = document.getElementById("participant-count");
     this.videoPublisher = this.setupVideoPublisher();
     this.clickStatus = 'off';
     this.setupEventHandlers();
@@ -55,12 +56,14 @@ export default class Party {
       // This function runs whenever a client connects to a session
       connectionCreated: function(event) {
         self.connectionCount++;
+        self.participantCount.textContent = `${self.connectionCount} המשתתפים`;
         streamLayout(self.subscribers, self.connectionCount);
       },
 
       // This function runs whenever a client disconnects from the session
       connectionDestroyed: function(event) {
         self.connectionCount--;
+        self.participantCount.textContent = `${self.connectionCount} המשתתפים`;
         streamLayout(self.subscribers, self.connectionCount);
       }
     });
